@@ -1,9 +1,9 @@
-{% if site.safe and site.cooler.analytics.provider and page.cooler.analytics != false %}
+{% if site.cooler.analytics.provider and page.cooler.analytics != false %}
 
 {% case site.cooler.analytics.provider %}
 {% when "google" %}
   {% include cooler/analytics-providers/google %}
-{% when "custom" %}
+{% when "cnzz" %}
   {% include cooler/analytics-providers/cnzz %}
 {% endcase %}
 
