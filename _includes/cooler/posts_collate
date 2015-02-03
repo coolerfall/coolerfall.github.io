@@ -2,10 +2,10 @@
 Collate_posts helper. Collated posts by year and month.
 Usage:
   1) assign the 'posts_collate' variable to a valid array of posts.
-  2) include JB/posts_collate
+  2) include cooler/posts_collate
   example:
     {% assign posts_collate = site.posts %}
-    {% include JB/posts_collate %}
+    {% include cooler/posts_collate %}
 
   Ordering:
     Posts are displayed in reverse chronological order.
@@ -17,7 +17,7 @@ Usage:
         
 -->{% endcomment %}
 
-{% if site.JB.posts_collate.provider == "custom" %}
+{% if site.cooler.posts_collate.provider == "custom" %}
   {% include custom/posts_collate %}
 {% else %}
   {% for post in posts_collate  %}

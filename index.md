@@ -2,7 +2,7 @@
 layout: page
 title: Vincent Cheung
 ---
-{% include JB/setup %}
+{% include cooler/setup %}
 
 Here's a sample "posts list".
 
