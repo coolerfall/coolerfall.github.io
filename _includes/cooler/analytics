@@ -1,4 +1,4 @@
-{% if site.cooler.analytics.provider and page.cooler.analytics != false %}
+{% if site.safe and site.cooler.analytics.provider and page.cooler.analytics != false %}
 
 {% case site.cooler.analytics.provider %}
 {% when "google" %}
