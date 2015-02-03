@@ -3,10 +3,6 @@
 {% case site.cooler.comments.provider %}
 {% when "disqus" %}
   {% include cooler/comments-providers/disqus %}
-{% when "livefyre" %}
-  {% include cooler/comments-providers/livefyre %}
-{% when "intensedebate" %}
-  {% include cooler/comments-providers/intensedebate %}
 {% when "custom" %}
   {% include custom/comments %}
 {% endcase %}
