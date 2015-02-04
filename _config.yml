@@ -8,12 +8,13 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Vincent Cheung's blog
-tagline: Site Tagline
+title : VC's blog
+tagline: 要学会递归，首先要学会递归
 author :
   name : Vincent Cheung
+  description : "Android Developer, Gopher"
   email : coolingfall@gmail.com
-  github : Coolerfall
+  github : https://github.com/Coolerfall
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -113,3 +114,4 @@ cooler :
 
 # encoding
 encoding: utf-8
+markdown: rdiscount

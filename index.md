@@ -1,8 +1,9 @@
 ---
 layout: page
-title: Vincent Cheung
+tagline: 
+title: VC's blog
 ---
-{% include cooler/setup %}
+{{ site.tagline }}
 
 Here's a sample "posts list".
 
