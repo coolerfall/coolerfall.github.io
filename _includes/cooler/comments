@@ -3,8 +3,8 @@
 {% case site.cooler.comments.provider %}
 {% when "disqus" %}
   {% include cooler/comments-providers/disqus %}
-{% when "custom" %}
-  {% include custom/comments %}
+{% when "duoshuo" %}
+  {% include cooler/comments-providers/duoshuo %}
 {% endcase %}
 
 {% endif %}
