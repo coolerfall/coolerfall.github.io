@@ -80,8 +80,8 @@ cooler :
   #
   comments :
     provider : duoshuo
-    disqus :
-      short_name : jekyllbootstrap
+    duoshuo :
+      short_name : coolerfall
 
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
