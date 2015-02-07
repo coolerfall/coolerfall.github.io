@@ -17,6 +17,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
     <!-- Custom styles -->
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ ASSET_PATH }}/css/cooler.css" rel="stylesheet" type="text/css">
     <link href="{{ ASSET_PATH }}/css/highlight.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,8 +42,8 @@
   </head>
 
   <body>
-    <div class="container">
-      <nav class="navbar navbar-default" role="navigation">
+    <div class="nav-container">
+      <nav class="blog-nav" role="navigation">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -63,16 +64,16 @@
               {% include cooler/navigation_list %}
             </ul>
           </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid  -->
+        </div><!-- /.container-fluid --> 
       </nav>
     </div><!-- container -->
 
     <div class="content">
-      {{ content }}
-    </div>
+        {{ content }}    
+      </div>
 
     <footer class="footer">
-      <div class="content">
+      <div class="footer">
         <center>
           <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
             with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>

@@ -4,7 +4,7 @@ tagline:
 title: Vincent Cheung's 个人博客
 ---
 
-### 我在github的项目 ###
+### coolerfall@github ###
 * [Android-Http-Download-Manager][1]
 * [Android-AppDaemon][2]
 * [AppUninstallWatcher][3]
