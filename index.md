@@ -1,14 +1,14 @@
 ---
 layout: page
 tagline: 
-title: VC's blog
+title: Vincent Cheung's 个人博客
 ---
-{{ site.tagline }}
 
-Here's a sample "posts list".
+### 我在github的项目 ###
+* [Android-Http-Download-Manager][1]
+* [Android-AppDaemon][2]
+* [AppUninstallWatcher][3]
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+[1]: https://github.com/Coolerfall/Android-HttpDownloadManager
+[2]: https://github.com/Coolerfall/Android-AppDaemon
+[3]: https://github.com/Coolerfall/Android-AppUninstallWatcher
