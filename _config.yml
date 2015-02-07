@@ -114,4 +114,6 @@ cooler :
 
 # encoding
 encoding: utf-8
-markdown: rdiscount
+markdown: redcarpet
+redcarpet:
+  extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
