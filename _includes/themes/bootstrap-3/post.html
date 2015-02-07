@@ -1,11 +1,11 @@
-<div class="page-header">
-  <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
-</div>
-
-<div class="row post-full">
+<!-- post pages -->
+<div class="row post-full typo">
   <div class="col-xs-12">
+    <div class="title">
+      <h3>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h3>
+    </div>
     <div class="date">
-      <span>{{ page.date | date_to_long_string }}</span>
+      <span>{{ page.date | date: " %Y 年 %m 月 %d 日" }}</span>
     </div>
     <div class="content">
       {{ content }}
@@ -34,7 +34,6 @@
     {% else %}
       <li class="prev disabled"><a>&larr; Previous</a></li>
     {% endif %}
-      <li><a href="{{ BASE_PATH }}{{ site.cooler.archive_path }}">Archive</a></li>
     {% if page.next %}
       <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
     {% else %}
