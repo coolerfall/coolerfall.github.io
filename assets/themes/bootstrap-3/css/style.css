@@ -93,3 +93,9 @@ body > .content {
   padding-left: 200px;
   padding-right: 200px
 }
+
+.highlight pre, code {
+  font-size: 15px;
+  background-color: #272822;
+  color: #272822;
+}
