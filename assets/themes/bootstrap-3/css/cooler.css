@@ -29,22 +29,22 @@ a.brand {
   font-style: normal;
 }
 
-body {
-  background-color: #efefef;
-}
-
 body > .nav-container {
   padding: 15px 20px;
   margin: 20px 120px;
-  border: 1px solid #d0d0d0;
+  border: 1px solid #d9d9d9;
   border-radius: 3px;
   background-color: #ffffff;
 }
 
-body > .content {
-  padding: 20px 50px;
-  margin: 40px 120px;
-  border: 1px solid #d0d0d0;
+.container {
+	padding-top: 20px;
+}
+
+.content {
+  padding: 15px 40px;
+  margin-bottom: 40px;
+  border: 1px solid #d9d9d9;
   border-radius: 3px;
   background-color: #ffffff;
 }
@@ -54,3 +54,4 @@ body > .content {
   background-color: #272822;
   color: #272822;
 }
+

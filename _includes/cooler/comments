@@ -5,6 +5,7 @@
   {% include cooler/comments-providers/disqus %}
 {% when "duoshuo" %}
   {% include cooler/comments-providers/duoshuo %}
+  {% include cooler/comments-providers/duoshuo-common %}
 {% endcase %}
 
 {% endif %}
