@@ -5,9 +5,12 @@
       <h3>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h3>
     </div>
     <div class="date">
-      <span>{{ page.date | date: " %Y.%m.%d" }}</span>
+      <span><h3><small>{{ page.date | date: " %Y年%m月%d日" }}</small><h3></span>
     </div>
-    <div>
+    <div class="page-content">
+      {% if page.head %}
+        {{ page.head }}
+      {% endif %}
       {{ content }}
     </div>
 

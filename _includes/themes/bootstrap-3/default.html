@@ -60,7 +60,7 @@
           <ul class="nav navbar-nav">
             {% assign pages_list = site.pages %}
             {% assign group = 'navigation' %}
-            {% include cooler/navigation_list %}
+            {% include cooler/pages_list %}
           </ul>
           <!-- <form action="" class="navbar-form pull-right" method="get" role="search">
             <div class="form-group">
@@ -87,7 +87,8 @@
               <h3><small>{{ site.author.name }}</small></h3>
               <hr>
               <h3><small>{{ site.author.description }}</small></h3>
-              <a href="{{ site.author.github }}">coolerfall@github.com</a>
+              <h3><small>Github: <a href="{{ site.author.github }}">coolerfall@github.com</a></small></h3>
+             <h3><small>Email: {{ site.author.email }} </small></h3>
             </div>
           </div><!-- about -->
 

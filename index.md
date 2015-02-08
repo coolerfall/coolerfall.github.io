@@ -1,14 +1,15 @@
 ---
 layout: page
-tagline: 
-title: Vincent Cheung's 个人博客
+title: Vincent Cheung's 博客
 ---
 
-### coolerfall@github ###
-* [Android-Http-Download-Manager][1]
-* [Android-AppDaemon][2]
-* [AppUninstallWatcher][3]
-
-[1]: https://github.com/Coolerfall/Android-HttpDownloadManager
-[2]: https://github.com/Coolerfall/Android-AppDaemon
-[3]: https://github.com/Coolerfall/Android-AppUninstallWatcher
+{% for post in site.posts %}
+<div class="post-item">
+  <a href="{{ post.url }}">
+    <h2>{{ post.title }}</h2>
+  </a>
+  <p><h3><small>{{ post.description }}</small></h3></p>
+  <p class="date"><h3><small>{{ post.date | date_to_long_string}}</small></h3></p>
+  <hr>
+</div>
+{% endfor %}

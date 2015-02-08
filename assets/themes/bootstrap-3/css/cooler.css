@@ -52,6 +52,15 @@ body > .nav-container {
 .highlight pre, code {
   font-size: 15px;
   background-color: #272822;
-  color: #272822;
+  color: #e0e0e0;
 }
 
+.date {
+  font-size: 18px;
+  font-weight: normal;
+  color: #606060;
+}
+
+.page-content {
+  font-size: 16px
+}
