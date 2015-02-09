@@ -51,6 +51,7 @@ body > .nav-container {
 
 .highlight pre, code {
   font-size: 15px;
+  font-family: "DejaVu Sans Mono";
   background-color: #272822;
   color: #e0e0e0;
 }

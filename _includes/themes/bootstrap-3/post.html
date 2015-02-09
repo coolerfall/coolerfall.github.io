@@ -2,7 +2,7 @@
 <div class="row post-full typo">
   <div class="col-xs-12">
     <div class="title">
-      <h3>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h3>
+      <h2>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h2>
     </div>
     <div class="date">
       <span><h3><small>{{ page.date | date: " %Y年%m月%d日" }}</small><h3></span>
@@ -32,16 +32,16 @@
   
     <hr>
     <ul class="pagination">
-    {% if page.previous %}
-      <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo; 上一篇</a></li>
-    {% else %}
-      <li class="prev disabled"><a>&larr; 上一篇</a></li>
-    {% endif %}
-    {% if page.next %}
-      <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇 &raquo;</a></li>
-    {% else %}
-      <li class="next disabled"><a>下一篇 &rarr;</a>
-    {% endif %}
+      {% if page.previous %}
+        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo; 上一篇</a></li>
+      {% else %}
+        <li class="prev disabled"><a>&larr; 上一篇</a></li>
+      {% endif %}
+      {% if page.next %}
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇 &raquo;</a></li>
+      {% else %}
+        <li class="next disabled"><a>下一篇 &rarr;</a>
+      {% endif %}
     </ul>
     <hr>
     {% include cooler/comments %}

@@ -9,9 +9,10 @@ highlighter: pygments
 # so be sure to set them if your theme uses them.
 #
 title : coolerfall
+keywords : "Vincent Cheung, Blog, Android, Android Developer, Android开发, golang, github"
 author :
   name : Vincent Cheung
-  description : "Android Developer, Gopher, Charcoal Drawing"
+  description : "Android Developer, Gopher, Open Source, Charcoal Drawing"
   email : coolingfall@gmail.com
   github : https://github.com/Coolerfall
 
