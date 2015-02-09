@@ -2,7 +2,7 @@
 layout: post
 title: 在Android Studio中利用gradle来自动编译jni
 category: Android
-tags: [android studio]
+tags: [android studio, ndk]
 head: 在最近的Android开发中，项目逐渐从Eclipse迁移到Android Studio中来，google官方现在并未在Android Studio中支持ndk的开发，但是我们可以利用gradle自动编译jni。
 ---
 {% include cooler/setup %}
@@ -61,6 +61,6 @@ task copyJniLibs(type: Copy) {
 }
 {% endhighlight %}
 
-这两个task不要放在android{}中，放在android{}外即可，否则无法编译。其中`NDK_APP_DST_DIR`为编译后的库存放的文件夹，根据需求自己设定，我在这里是设置为的buildDir下的nkd文件
+这两个task不要放在android{}中，放在android{}外即可，否则无法编译。其中*NDK_APP_DST_DIR*为编译后的库存放的文件夹，根据需求自己设定，我在这里是设置为的buildDir下的nkd文件夹
 
 4.最后编译，Android Studo会自动执行ndkBuild和copyJniLibs这两个task

@@ -3,7 +3,7 @@ layout: page
 title: Vincent Cheung's 博客
 ---
 
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 <div class="post-item">
   <a href="{{ post.url }}">
     <h2>{{ post.title }}</h2>
@@ -13,3 +13,29 @@ title: Vincent Cheung's 博客
   <hr>
 </div>
 {% endfor %}
+
+<div>
+  <ul class="pager">
+  {% if paginator.total_pages > 1 %}
+  <!-- 分页代码 -->
+  {% endif %}
+
+  {% if paginator.previous_page %}
+      <li class="previous"><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; 上一页</a></li>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <span class="active">{{ page }}</span>
+    {% elsif page == 1 %}
+      <li class="number"><a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+    {% else %}
+      <li class="number"><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <li class="next"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页 &rarr;</a></li>
+  {% endif %}
+</ul>
+</div>
