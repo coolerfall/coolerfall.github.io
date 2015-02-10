@@ -1,0 +1,15 @@
+{% comment %}<!--
+The projects_list include is a listing helper for project in github.
+-->{% endcomment %}
+
+{% for post in projects_list %}
+  {% if post.title != null %}
+    {% if group != null and group == post.group %}
+       <a href="{{ post.url }}"><h3>{{ post.title }}</h3></a>
+       {% if post.description %}
+					<p><h3><small>{{ post.description }}</small></h3></p>
+       {% endif %}
+       <hr>
+    {% endif %}
+  {% endif %}
+{% endfor %}

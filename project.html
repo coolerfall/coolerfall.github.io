@@ -5,3 +5,10 @@ group: navigation
 ---
 {% include cooler/setup %}
 
+<div>
+  <ul>
+    {% assign projects_list = site.posts %}
+    {% assign group = 'project' %}
+    {% include/cooler/projects_list %}
+  </ul>
+</div>
