@@ -115,5 +115,5 @@ encoding: utf-8
 # markdown interpreter
 markdown: rdiscount
 # pagination
-paginate: 5
+paginate: 10
 paginate_path: "page:num"

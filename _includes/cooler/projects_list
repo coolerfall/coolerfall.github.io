@@ -13,3 +13,5 @@ The projects_list include is a listing helper for project in github.
     {% endif %}
   {% endif %}
 {% endfor %}
+{% assign projects_list = nil %}
+{% assign group = nil %}
