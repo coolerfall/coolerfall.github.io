@@ -96,6 +96,18 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
+              <h3 class="panel-title">标签</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="tag_box inline">
+                {% assign tags_list = site.tags %}  
+                {% include cooler/tags_list %}
+              </ul>
+            </div>
+          </div><!-- tags -->
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
               <h3 class="panel-title">来访的小伙伴</h3>
             </div>
             <div class="panel-body">
