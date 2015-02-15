@@ -8,13 +8,13 @@ tags: [github pages, jekyll, ruby]
 {% include cooler/setup %}
 
 ### Jekyll的简单教程 ###
-1.Jekyll是基于Ruby开发的，所以先安装[rubyinstaller以及DevKit][1]，要注意DevKit需下载与rubyinstaller对应的版本。安装好ruby之后，将DevKit解压，在cmd中切换到DevKit的根目录，执行`ruby dk.rb init`生成config.yml配置文件，然后在config.yml添加ruby的安装目录：
+1.Jekyll是基于Ruby开发的，所以先安装[rubyinstaller以及DevKit][1]，要注意DevKit需下载与rubyinstaller对应的版本。安装好ruby之后，将DevKit解压，在cmd中切换到DevKit的根目录，执行`$ ruby dk.rb init`生成config.yml配置文件，然后在config.yml添加ruby的安装目录：
 {% highlight text %}
 ---
 - E:/Ruby200
 {% endhighlight %}
 
-注意是*---*下面加*-*和空格最后在cmd中执行`ruby dk.rb install`，出现提示：
+注意是*---*下面加*-*和空格最后在cmd中执行`$ ruby dk.rb install`，出现提示：
 {% highlight text %}
 $ ruby dk.rb install
 [INFO] Updating convenience notice gem override for 'E:/Ruby200'
@@ -22,7 +22,7 @@ $ ruby dk.rb install
 {% endhighlight %}
 则ruby环境搭建完成了。
 
-2.在cmd中通过gem来安装jekyll，首先使用`gem list`查看是否安装liquid，若未安装则执行`gem install liquid`，安装完成后再执行`gem install jekyll`来安装jekyll。如果安装速度很慢，可以考虑将ruby源更换为淘宝源：
+2.在cmd中通过gem来安装jekyll，首先使用`$ gem list`查看是否安装liquid，若未安装则执行`$ gem install liquid`，安装完成后再执行`$ gem install jekyll`来安装jekyll。如果安装速度很慢，可以考虑将ruby源更换为淘宝源：
 {% highlight text %}
 $ gem sources --remove https://rubygems.org/
 $ gem sources -a https://ruby.taobao.org/
