@@ -147,3 +147,36 @@ public class HomeKeyReceiver extends BroadcastReceiver {
 {% endhighlight %}
 
 由于home键在不同手机上，长/短按有不同的效果，代码列举出常用的几种，其中`homekey`表示短按home键退到桌面。
+
+简单使用：
+{% highlight java %}
+private HomeKeyReceiver mHomeKeyReceiver;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+
+	mHomeKeyReceiver = new HomeKeyReceiver(this);
+	mHomeKeyReceiver.setOnHomeKeyListener(new OnHomeKeyListener() {
+		@Override
+		public void onKeypressed() {
+			Log.d(TAG, "home key pressed");
+		}
+	});
+}
+
+@Override
+protected void onResume() {
+	super.onResume();
+	mHomeKeyReceiver.register();
+}
+
+@Override
+protected void onPause() {
+	super.onPause();
+	mHomeKeyReceiver.unregister();
+}
+
+{% endhighlight %}
+
+注意：这个Receiver需要在`onResume`中注册，在`onPause`中注销。

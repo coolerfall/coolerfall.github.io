@@ -5,7 +5,8 @@
       <h2>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h2>
     </div>
     <div class="date">
-      <span><h3><small>{{ page.date | date: " %Y年%m月%d日" }}</small><h3></span>
+    <!-- date: " %Y年%m月%d日" -->
+      <span><h3><small>{{ page.date | date_to_long_string }}</small><h3></span>
     </div>
     <div class="page-content">
       {% if page.head %}
