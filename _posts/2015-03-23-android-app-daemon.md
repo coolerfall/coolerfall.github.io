@@ -87,7 +87,7 @@ static void start_service(char *package_name, char *service_name)
 	}
 }
 {% endhighlight %}
-这里说明下：为了避免启动服务时服务崩溃(如果Service中有bug原因)，又fork了一个子进程，然后在子进程中启动指定的Service。其次是Android SDK版本小于17的执行命令有所不同，17及以上命令为：`execlp("am", "am", "startservice",
+这里说明下：execlp执行后，如果没有错误则不返回，有错时才有返回值，因此又fork了一个子进程，然后在子进程中启动指定的Service。其次是Android SDK版本小于17的执行命令有所不同，17及以上命令为：`execlp("am", "am", "startservice",
 "--user", "0", "-n", s_name, (char *) NULL)`, 17以下:`execlp("am", "am", "startservice", "-n", s_name, (char *) NULL)`。获取version比较简单:
 {% highlight c %}
 #include <sys/system_properties.h>
