@@ -110,6 +110,8 @@ $ %GRADLE_HOME%/bin/gradle uploadArchives
 ![img][10]
 </br>
 最后就是等待工作人员给你同步，成功同步后，一般10几分钟左右就可以在[maven center][12]搜索到你的项目了，这样就可以在AS中使用gradle来添加依赖了。如果对[gradle-mvn-push.gradle][4]配置还有什么疑问，请参考我的项目：[Android-HttpDownloadManger][13]。
+</br>
+ps:如果创建issue的时候，工作人员回复`Only one JIRA issue per top-level groupId is necessary. You should already have all the necessary permissions to deploy and new artifacts to this groupId or to any sub-groups thanks to OSSRH-14919.`, 说明之前已经成功的release了一个项目，就不需要再创建一个新的issue了，直接将项目提交到[snapshots][5]，并进行closed和realease操作即可，过10分钟左右就可以在gradle中使用了。
 
 [1]: https://issues.sonatype.org
 [2]: https://oss.sonatype.org/
