@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 在Android Studio中利用gradle来自动编译jni
-category: Android
+category: tools
 tags: [android studio, ndk]
 head: 在最近的Android开发中，项目逐渐从Eclipse迁移到Android Studio中来，google官方现在并未在Android Studio中支持ndk的开发，但是我们可以利用gradle自动编译jni。
 ---

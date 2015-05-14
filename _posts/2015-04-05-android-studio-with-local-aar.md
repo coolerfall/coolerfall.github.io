@@ -2,7 +2,7 @@
 layout: post
 title: Android Sutdio使用本地aar包
 head: Android Studio使用gradle构建项带来了很大的方便，可以只用在app目录下的build.gradle中的dependencies加入一句代码就搞定了。
-category: android 
+category: tools 
 tags: [android studio]
 ---
 {% include cooler/setup %}

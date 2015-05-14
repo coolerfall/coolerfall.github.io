@@ -2,7 +2,7 @@
 layout: post
 title: Android Studio多渠道批量打包
 head: Android市场众多，在打包App的时候需要对每个渠道添加不同的参数用于统计，但是针对每个渠道单独打包比较麻烦，所以要考虑使用批量打包。AS使用gradle来构建android项目，我们可以利用来进行批量打包操作。
-category: android
+category: tools
 tags: [android studio]
 ---
 {% include cooler/setup %}

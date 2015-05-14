@@ -2,7 +2,7 @@
 layout: post
 title: Android Studio更新时连接服务器失败问题解决
 head: 最近被墙得厉害，连AS都不能自动更新了，最终找到了个比较简单有效的办法。
-category: android
+category: tools
 tags: [android studio]
 ---
 {% include cooler/setup %}
