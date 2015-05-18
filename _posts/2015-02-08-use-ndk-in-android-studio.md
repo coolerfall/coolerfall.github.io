@@ -49,7 +49,7 @@ android {
 }
 
 task ndkBuild(type: Exec) {
-	def ndkDir = project.plugins.findPlugin('com.android.application').getNdkFolder()
+	def ndkDir = project.plugins.findPlugin('com.android.application').sdkHandler.getNdkFolder()
     commandLine "$ndkDir/ndk-build.cmd", '-C', 'src/main/jni',
 		    "NDK_OUT=$buildDir/ndk/obj",
 		    "NDK_APP_DST_DIR=$buildDir/ndk/libs/\$(TARGET_ARCH_ABI)"
