@@ -64,3 +64,8 @@ task copyJniLibs(type: Copy) {
 这两个task不要放在android{}中，放在android{}外即可，否则无法编译。其中*NDK_APP_DST_DIR*为编译后的库存放的文件夹，根据需求自己设定，我在这里是设置为的buildDir下的nkd文件夹
 
 4.最后编译，Android Studo会自动执行ndkBuild和copyJniLibs这两个task
+
+ps:也可以使用命令行的方式来执行这两个task
+    
+    $ gradle ndkBuild copyJniLibs
+使用这个命令前，请先找到gradle的目录下bin目录，并添加到环境变量中去
