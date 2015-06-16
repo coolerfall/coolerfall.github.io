@@ -17,6 +17,7 @@ tags: [ndk, daemon]
 {% highlight c %}
 int main(int argc, char *argv[])
 {
+	int i;
 	pid_t pid;
 
 	if ((pid = fork()) < 0)
@@ -27,6 +28,13 @@ int main(int argc, char *argv[])
 	{
 		/* child process become session leader */
 		setsid();
+		/* change work directory */
+		chdir("/");
+
+		for (i = 0; i < 3; i ++)
+		{
+			close(i);
+		}
 		
 		while(1)
 		{
