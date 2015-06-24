@@ -1,7 +1,7 @@
 ---
 layout: post
-title: linux shell报错bad interpreter: No such file or directory
-head: 执行shell时遇到bad interpreter: No such file or directory。
+title: linux shell报错bad interpreter No such file or directory
+head: 执行shell时遇到bad interpreter No such file or directory
 category: tools
 tags: [shell]
 ---
