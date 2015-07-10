@@ -93,6 +93,10 @@ static void start_service(char *package_name, char *service_name)
 		LOGD(LOG_TAG , "exit start-service child process");
 		exit(EXIT_SUCCESS);
 	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+	}
 }
 {% endhighlight %}
 这里说明下：execlp执行后，如果没有错误则不返回，有错时才有返回值，因此又fork了一个子进程，然后在子进程中启动指定的Service。其次是Android SDK版本小于17的执行命令有所不同，17及以上命令为：`execlp("am", "am", "startservice",
