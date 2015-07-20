@@ -8,6 +8,8 @@ tags: [ndk, uninstall]
 ---
 {% include cooler/setup %}
 
+项目地址：[Android App Uninstall Watcher][4]
+
 　　很多应用在卸载后都会弹出一个网页做用户卸载反馈，这就需要监听App的卸载，但是应用一旦卸载就不会再执行任何程序了，如何才能弹出网页，答案就是在应用开启时就fork出一个子进程来，在进程中对App进行卸载监听。
 　　在linux中有个东西叫inotify，可以对指定的文件进行监听（包括修改，删除等等），基本的流程就是inotify_init->inotify_add_watch->inotify_event，在inotify_event读取操作的时候是阻塞的，一直会等到指定的文件变动后才会往下执行:
 {% highlight c %}
@@ -105,3 +107,4 @@ ps:此方法和[App Daemon][1]一样由于系统原因不能适配所有手机�
 [1]: http://coolerfall.com/android/android-app-daemon
 [2]: http://curl.haxx.se/libcurl/
 [3]: https://github.com/Coolerfall/Android-AppUninstallWatcher/blob/master/app/src/main/jni/watcher/watcher.c
+[4]: https://github.com/Coolerfall/Android-AppUninstallWatcher

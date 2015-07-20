@@ -8,3 +8,8 @@ tags: [http, download]
 ---
 {% include cooler/setup %}
 
+项目地址：[Android Http Download Manger][1]
+
+
+
+[1]: https://github.com/Coolerfall/Android-HttpDownloadManager

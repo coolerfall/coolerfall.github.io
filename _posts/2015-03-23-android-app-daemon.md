@@ -8,9 +8,11 @@ tags: [ndk, daemon]
 ---
 {% include cooler/setup %}
 
+项目地址：[Android App Daemon][1]
+
 　　一直没空把App Daemon的原理整理一下，见不少人在问原理，我这里就把整个流程大概的说一下。
 　　关于进程守护，从接触Android没多久就一直想实现，网上给出的方案也是各种各样，有双服务方式，有利用系统定时器方式的等等等等，但我都有过尝试，最终都没有达到自己想要的结果。后来想到自己以前在搞linux的时候用到子进程来处理一些任务，而Android正是基于linux的，觉得这样的话应该是可行的。最初直接在JNI的c代码中fork出一个子进程出来，然后在子进程中加一个while(1)，再在while中sleep并打开一个指定的service，这样一个最简单的守护完成了。但是后来测试发现，虽然能实现功能，不过使用adb shell查看进程(命令: ps | grep com.coolerfall....)，发现fork出来的进程的VSIZE(进程虚拟地址空间大小)和RSS(进程正在使用的物理内存的大小)都很大，而且UI线程有时候会出现莫名其妙的问题，于是进程守护也就暂时放下了。
-　　后来由于项目需求，又不得不开始折腾进程守护。一次在看开源项目[afwall][1](android上的流量防火墙)，发现其中的命令是直接使用linux命令行的方式在执行的，这才想起linux可以直接编译一个可执行的二进制文件，然后在命令行中直接执行。看了看Android.mk的文档，加入`include $(BUILD_EXECUTABLE)`可以让c文件编译成在Android上运行的二进制文件，最后把以前的代码直接拿过来，一切OK了。
+　　后来由于项目需求，又不得不开始折腾进程守护。一次在看开源项目[afwall][2](android上的流量防火墙)，发现其中的命令是直接使用linux命令行的方式在执行的，这才想起linux可以直接编译一个可执行的二进制文件，然后在命令行中直接执行。看了看Android.mk的文档，加入`include $(BUILD_EXECUTABLE)`可以让c文件编译成在Android上运行的二进制文件，最后把以前的代码直接拿过来，一切OK了。
 <br/>
 <br/>
 原理分析：
@@ -127,4 +129,5 @@ Runtime.getRuntime().exec(cmd);
 <br/>
 ps: 并不是所有手机都能用此方法实现进程守护，主要是因为现目前的进程清理软件不会清理c层fork出的进程，但有的手机（如小米），自带清理进程会清理掉应用相关的所有进程，故而不能实现进程守护。
 
-[1]: https://github.com/ukanth/afwall
+[1]: https://github.com/Coolerfall/Android-AppDaemon
+[2]: https://github.com/ukanth/afwall
