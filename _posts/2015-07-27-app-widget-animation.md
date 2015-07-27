@@ -22,7 +22,7 @@ tags: [animation]
 <layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
                  android:animation="@anim/fade_in"/>
 {% endhighlight %}
-动画效果准备好后，接下来就是应用到AppWidget中去了。比如AppWidget的布局，`widget_layout.xml`如下：
+动画效果准备好后，接下来就是在AppWidget布局中使用了。比如AppWidget的布局，`widget_layout.xml`如下：
 {% highlight xml %}
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -45,7 +45,7 @@ tags: [animation]
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/widget_tv_music_info"
+        android:id="@+id/widget_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name">
