@@ -24,12 +24,12 @@ tags: [animation]
 {% endhighlight %}
 动画效果准备好后，接下来就是应用到AppWidget中去了。比如AppWidget的布局，`widget_layout.xml`如下：
 {% highlight xml %}
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/widget_bg">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/widget_layout_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
