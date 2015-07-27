@@ -2,6 +2,6 @@ coolerfall.github.io
 ============
 Personal home page.
 
-[coolerfall.github.io][1]
+[coolerfall.com][1]
 
-[1]: http://coolerfall.github.io
+[1]: http://coolerfall.com
