@@ -84,17 +84,12 @@ void open_browser(char *url)
 	/* is the version is greater than 17 */
 	if (version >= 17 || version == 0)
 	{
-		execlp("am", "am", "start", "--user", "0", "-n",
-				"com.android.browser/com.android.browser.BrowserActivity",
-				"-a", "android.intent.action.VIEW",
-				"-d", url, (char *)NULL);
+		execlp("am", "am", "start", "--user", "0",
+				"-a", "android.intent.action.VIEW", "-d", url, (char *)NULL);
 	}
 	else
 	{
-		execlp("am", "am", "start", "-n",
-				"com.android.browser/com.android.browser.BrowserActivity",
-				"-a", "android.intent.action.VIEW",
-				"-d", url, (char *)NULL);
+		execlp("am", "am", "start", "-a", "android.intent.action.VIEW", "-d", url, (char *)NULL);
 	}
 }
 {% endhighlight %}
