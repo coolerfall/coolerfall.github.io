@@ -83,12 +83,13 @@ static void start_service(char *package_name, char *service_name)
 
 		if (version >= 17 || version == 0)
 		{
-			execlp("am", "am", "start", "--user", "0",
-					"-a", "android.intent.action.VIEW", "-d", url, (char *)NULL);
+			int ret = execlp("am", "am", "startservice",
+						"--user", "0", "-n", s_name, (char *) NULL);
+			LOGD(LOG_TAG, "result %d", ret);
 		}
 		else
 		{
-			execlp("am", "am", "start", "-a", "android.intent.action.VIEW", "-d", url, (char *)NULL);
+			execlp("am", "am", "startservice", "-n", s_name, (char *) NULL);
 		}
 
 		LOGD(LOG_TAG , "exit start-service child process");
