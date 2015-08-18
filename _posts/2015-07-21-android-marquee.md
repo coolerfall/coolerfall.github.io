@@ -3,7 +3,7 @@ layout: post
 title: TextView实现跑马灯效果
 head: 跑马灯效果是TextView自带的一个属性，使用TextView来实现单个、多个跑马灯效果比较简单。
 category: android
-tags: [marquee]
+tags: [widget]
 ---
 {% include cooler/setup %}
 
