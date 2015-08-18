@@ -1,7 +1,7 @@
 ---
 layout: post
 title: RecyclerView使用GridLayoutManager时不能wrap_content
-description: 用RecyclerView一段时间了，最近需要实现一个自定义的数字键盘，需要放在底部，结果发现RecyclerView并不能wrap_content。
+head: 用RecyclerView一段时间了，最近需要实现一个自定义的数字键盘，需要放在底部，结果发现RecyclerView并不能wrap_content。
 category: android
 tags: [widget]
 ---
