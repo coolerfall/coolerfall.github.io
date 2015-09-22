@@ -13,8 +13,7 @@ RecyclerView与ListView有所不同，它并不负责高度的控制，真正控
 public class KeyGridLayoutManager extends GridLayoutManager {
 		....
 	
-	public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, 
-		int widthSpec, int heightSpec) {
+	public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
 		....
 
 		for (int i = 0; i < adapterItemCount; i++) {
@@ -68,7 +67,9 @@ public class KeyGridLayoutManager extends GridLayoutManager {
 		....
 }
 {% endhighlight %}
-只需要修改onMeasure里面的几句代码，即可实现RecyclerView使用GridLayoutManager时wrap_content。
+只需要修改onMeasure里面的几句代码，即可实现RecyclerView使用GridLayoutManager时wrap_content，
+并且完全可以适用于ScrollView或RecyclerView嵌套RecyclerView的问题。
+<br/>
 <br/>
 ps：这里并没有考虑SpanSizeLookup的问题，如果使用了SpanSizeLookup，此方法不再wrap_content。
 
