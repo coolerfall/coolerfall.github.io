@@ -8,6 +8,6 @@ tags: [widget]
 ---
 {% include cooler/setup %}
 
-项目地址：[Android App Daemon][1]
+项目地址：[Android Lunar View][1]
 
 [1]: https://github.com/Coolerfall/Android-LunarView
