@@ -92,5 +92,9 @@ android {
 </br>
 如果项目中使用了三方类库，一定要看作者是否提供了proguard，一般来说都会提供，直接加入到`proguard-rules.pro`文件就可以了。
 </br>
+5.AppCompat兼容库问题
+</br>
+如果使用了google的兼容库，使用主题的时候要小心，要使用`Theme.AppCompat.NoActionBar`或者`Theme.AppCompat`，否则会报`java.lang.IlleagalStateException:You need to use a Theme.AppCompat theme(or descendant) with this activity`或者`AppCompat does not support the current theme features`。
+</br>
 </br>
 ps:这里暂时记录这么多，混淆中还有很多问题，后面再慢慢添加上去。
