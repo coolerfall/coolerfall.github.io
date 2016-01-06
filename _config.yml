@@ -117,5 +117,6 @@ encoding: utf-8
 # markdown interpreter
 markdown: rdiscount
 # pagination
+gems: [jekyll-paginate]
 paginate: 10
 paginate_path: "page:num"

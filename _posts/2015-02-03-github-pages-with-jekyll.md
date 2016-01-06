@@ -31,6 +31,14 @@ $ gem sources -l
 
 https://ruby.taobao.org
 {% endhighlight %}
+如果在执行`$ gem list`出现如下时：
+{% highlight text %}
+ERROR:  Could not find a valid gem 'liquid' (>= 0), here is why:
+          Unable to download data from https://rubygems.org/ - SSL_connect returned=1 errno=0 state=SSLv3 read server certificate
+B: certificate verify failed (https://rubygems.org/latest_specs.4.8.gz)
+{% endhighlight %}
+则需要下载[cacert.pem][3]文件，并添加一个环境变量命名为`SSL_CERT_FILE`指向`cacert.pem`所在路径，然后就可以下载了。
+</br>
 
 3.安装好jekyll后，从github上下载[jekyll bootstrap][2]模板:
 {% highlight text %}
@@ -42,3 +50,4 @@ $ jekyll server
 
 [1]: http://rubyinstaller.org/downloads/
 [2]: https://github.com/plusjade/jekyll-bootstrap/
+[3]: http://curl.haxx.se/ca/cacert.pem
