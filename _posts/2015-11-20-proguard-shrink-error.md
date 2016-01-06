@@ -2,7 +2,7 @@
 layout: post
 title: "Error: The output jar is empty. Did you specify the proper '-keep' options"
 head: "最近在写个小工具混淆Android lib包，用到了proguard命令行的方式，结果出现Error: The output jar is empty. Did you specify the proper '-keep' options的错误。"
-category: Android
+category: android
 tags: [proguard]
 ---
 {% include cooler/setup %}
