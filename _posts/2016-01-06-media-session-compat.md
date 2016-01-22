@@ -59,7 +59,28 @@ public class PlayerService extends Service {
 		ComponentName mbr = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
 		mMediaSession = new MediaSessionCompat(this, "mbr", mbr, null);
 		/* set flags to handle media buttons */
-		mMediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS);
+		mMediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | 
+			MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+
+		/* this is need after Lolipop */
+		mMediaSession.setCallback(new MediaSessionCompat.Callback() {
+			@Override
+			public boolean onMediaButtonEvent(Intent intent) {
+				if (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
+					return super.onMediaButtonEvent(intent);
+				}
+
+				KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+				if (event == null || event.getAction() != KeyEvent.ACTION_UP) {
+					return super.onMediaButtonEvent(intent);
+				}
+
+				// do something
+
+				return true;
+			}
+		});
+
 		/* to make sure the media session is active */
 		if (!mMediaSession.isActive()) {
 			mMediaSession.setActive(true);
@@ -81,5 +102,8 @@ public class PlayerService extends Service {
 </receiver>
 {% endhighlight %}
 这样就可以实现和API21之前的监听效果了。
+</br>
+</br>
+PS: API21之前MediaButtonReceiver是必须的；API21之后MediaSessionCompat.setCallback是必须的，因为MediaSessionCompatAPI21之后通过callback来处理media button。
 
 [1]: http://blog.csdn.net/qinjuning/article/details/6938436
