@@ -7,6 +7,8 @@ tags: [widget]
 ---
 {% include cooler/setup %}
 
+## 这篇文章已废弃，support v23.2.0已支持wrap_content属性，只需要调用LayoutManager的setAutoMeasureEnabled即可
+</br>
 RecyclerView与ListView有所不同，它并不负责高度的控制，真正控制高度的是LayoutManger，但是不管是LinearLayoutManager还是GridLayoutManager都是默认将高度设置为了match_parent，所以RecyclerView中去设置wrap_content并不能实现。要想控制高度，只有写一个类继承LinearLayoutManager或者GridLayoutManager，在onMeasure中去重新设置高度。然而通过各种google后发现[android-linear-layout-manager][1]可以解决LinearLayoutManager下的wrap_content问题，GridLayoutManager可以采用类似的方法来实现wrap_content，需要稍微修改一下[android-linear-layout-manager][1]：
 
 {% highlight java %}
