@@ -7,7 +7,7 @@ tags: [clang]
 ---
 {% include cooler/setup %}
 
-</br>
+<br>
 1.trim函数（去掉字符串首尾空格）
 {% highlight c %}
 /**

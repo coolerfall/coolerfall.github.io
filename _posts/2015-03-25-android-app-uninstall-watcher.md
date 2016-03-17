@@ -95,8 +95,8 @@ void open_browser(char *url)
 {% endhighlight %}
 和[App Daemon][1]类似，也是使用execlp来调用am命令打开默认浏览器，最后就会弹出一个指定的网页了。
 　　以上是卸载监听的基本流程，但我在实际操作过程中遇到了比如调试应用，实际上是覆盖，但这时候也会弹出网页等等，所有在子进程中的操作有所改动和优化，并在打开浏览器前使用了[libcurl][2]请求服务器，以满足不需要打开网页的需求，具体请查看[wathcer.c][3]。
-</br>
-</br>
+<br>
+<br>
 ps:此方法和[App Daemon][1]一样由于系统原因不能适配所有手机，请注意。
 
 [1]: http://coolerfall.com/android/android-app-daemon

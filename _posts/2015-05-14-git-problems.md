@@ -7,7 +7,7 @@ tags: [git]
 ---
 {% include cooler/setup %}
 
-</br>
+<br>
 1.在push大文件的时候遇到
 
 	error: RPC failed; result=22, HTTP code = 411
@@ -17,7 +17,7 @@ tags: [git]
 	
 	git config http.postBuffer 67108864
 2.想要把已经push的文件（夹）加入到.ignore中
-</br>
+<br>
 直接添加到.ignore中是不能成功的，因为已经push到服务器了，需要先删除本地缓存的文件：
 
 	git rm -r --cached .idea

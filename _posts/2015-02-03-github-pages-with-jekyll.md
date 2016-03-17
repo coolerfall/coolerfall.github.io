@@ -38,7 +38,7 @@ ERROR:  Could not find a valid gem 'liquid' (>= 0), here is why:
 B: certificate verify failed (https://rubygems.org/latest_specs.4.8.gz)
 {% endhighlight %}
 则需要下载[cacert.pem][3]文件，并添加一个环境变量命名为`SSL_CERT_FILE`指向`cacert.pem`所在路径，然后就可以下载了。
-</br>
+<br>
 
 3.安装好jekyll后，从github上下载[jekyll bootstrap][2]模板:
 {% highlight text %}
