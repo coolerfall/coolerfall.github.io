@@ -102,8 +102,8 @@ public class PlayerService extends Service {
 </receiver>
 {% endhighlight %}
 这样就可以实现和API21之前的监听效果了。
-</br>
-</br>
+<br>
+<br>
 PS: API21之前MediaButtonReceiver是必须的；API21之后MediaSessionCompat.setCallback是必须的，因为MediaSessionCompatAPI21之后通过callback来处理media button。
 
 [1]: http://blog.csdn.net/qinjuning/article/details/6938436

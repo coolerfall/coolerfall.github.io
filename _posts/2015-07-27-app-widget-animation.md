@@ -7,7 +7,7 @@ tags: [animation]
 ---
 {% include cooler/setup %}
 
-</br>
+<br>
 这里就拿淡入动画作为例子。首先在`res/anim`中新建一个动画`fade_in.xml`：
 {% highlight xml %}
 <?xml version="1.0" encoding="utf-8"?>
@@ -71,7 +71,7 @@ tags: [animation]
 </RelativeLayout>
 {% endhighlight %}
 这里面的内容保持和`widget_layout.xml`中要实现动画的layout一致就行了。
-</br>
+<br>
 最后需要在AppWidgetProvider中使用removeAllViews和addView方法：
 {% highlight java %}
 public class ExampleWidget extends AppWidgetProvider {

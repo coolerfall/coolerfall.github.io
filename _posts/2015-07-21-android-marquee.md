@@ -7,7 +7,7 @@ tags: [widget]
 ---
 {% include cooler/setup %}
 
-</br>
+<br>
 1.单个跑马灯效果
 这种比较简单，只需要在布局文件中加入几个属性就可以了：
 {% highlight xml %}
@@ -19,7 +19,7 @@ tags: [widget]
 	android:singleLine="true" />
 {% endhighlight %}
 2.多个跑马灯效果
-</br>
+<br>
 在同一个layout中，两个TextView如果都设置了焦点，只有后一个会处于focused的状态，这个时候需要写一个类来继承TextView，稍作修改即可：
 {% highlight java %}
 public class MarqueeView extends TextView {
@@ -59,7 +59,7 @@ public class MarqueeView extends TextView {
 	android:singleLine="true" />
 {% endhighlight %}
 3.在appwidget中实现跑马灯效果
-</br>
+<br>
 appwidget比较特殊，它只支持几个固定的view，所以就不能实现多个跑马灯效果，只能实现单个效果，不过和在普通layout中的实现稍微有所不同：
 {% highlight xml %}
 <TextView

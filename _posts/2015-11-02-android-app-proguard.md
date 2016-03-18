@@ -65,18 +65,18 @@ android {
 -keep public class android.support.v7.** { *; }
 {% endhighlight %}
 这样基本的规则就搞定了，可以来打包试一下，如果是新建工程那么是可以通过的，但是在正式的项目中往往还有其他东西，例如：三方类库、jni、aidl等等，这些如果不设置规则是不能编译通过的。
-</br>
+<br>
 1.jni混淆问题
-</br>
+<br>
 基本规则中有一条`-keepclasseswithmembernames class * { native <methods>; }`，可以排除native方法。
 如果jni里面没有使用java类，这条可以忽略，但如果jni中使用了你自定义的类，那么就要注意了，比如定义了一个bean类，然后jni需要调用这个类，又或者jni需要调用java中的一个回调函数，这些情况下都需要把这些类排除在外。
-</br>
+<br>
 2.aidl混淆问题
-</br>
+<br>
 如果项目中使用了aidl，也需要注意，如果不排除就会导致在运行的时候出错（编译时并不会报错），需要将其排除，例如使用了`IPackageStatsObserver`，就需要`-keep class android.content.pm.IPackageStatsObserver { *; }`。
-</br>
+<br>
 3.apache httpclient混淆问题
-</br>
+<br>
 如果项目中使用了apache httpclient，然后sdk又升级到了api23，这时候编译就会报错找不到httpclient，原因是google在api23中将其全部移除了，这个时候需要在build.gradle中加入：
 {% highlight groovy %}
 android {
@@ -87,14 +87,14 @@ android {
 	....
 }
 {% endhighlight %}
-</br>
+<br>
 4.三方类库混淆问题
-</br>
+<br>
 如果项目中使用了三方类库，一定要看作者是否提供了proguard，一般来说都会提供，直接加入到`proguard-rules.pro`文件就可以了。
-</br>
+<br>
 5.AppCompat兼容库问题
-</br>
+<br>
 如果使用了google的兼容库，使用主题的时候要小心，要使用`Theme.AppCompat.NoActionBar`或者`Theme.AppCompat`，否则会报`java.lang.IlleagalStateException:You need to use a Theme.AppCompat theme(or descendant) with this activity`或者`AppCompat does not support the current theme features`。
-</br>
-</br>
+<br>
+<br>
 ps:这里暂时记录这么多，混淆中还有很多问题，后面再慢慢添加上去。
