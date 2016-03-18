@@ -118,7 +118,7 @@ int get_version()
 }
 {% endhighlight %}
 
-由于编译出来的是可执行的二进制文件，所以调用就不像so库那样了。需要将可执行文件放在assets中，并在执行的时候将其copy至/data/data/<packagename>/app_bin文件夹下，然后在java中这样调用: 
+由于编译出来的是可执行的二进制文件，所以调用就不像so库那样了。需要将可执行文件放在assets中，并在执行的时候将其copy至/data/data/packagename/app_bin文件夹下，然后在java中这样调用: 
 {% highlight java %}
 String cmd = "/data/data/<packagename>/app_bin/daemon"
 Runtime.getRuntime().exec(cmd);
@@ -127,7 +127,9 @@ Runtime.getRuntime().exec(cmd);
 <br/>
 进程守护大致的原理就是这样了，只要搞清楚了原理，其实是进程守护并不复杂。
 <br/>
-ps: 并不是所有手机都能用此方法实现进程守护，主要是因为现目前的进程清理软件不会清理c层fork出的进程，但有的手机（如小米），自带清理进程会清理掉应用相关的所有进程，故而不能实现进程守护。
+ps: 并不是所有手机都能用此方法实现进程守护，有的手机（如小米），自带清理进程会清理掉应用相关的所有进程。5.x以上可参考[MarsDaemon][3].
+
 
 [1]: https://github.com/Coolerfall/Android-AppDaemon
 [2]: https://github.com/ukanth/afwall
+[3]: https://github.com/Marswin/MarsDaemon
