@@ -36,7 +36,7 @@ tags: [android studio, maven]
 由于我之前装过git自带有gpg，所以直接就生成gpg(如果没有安装git，可以直接安装[gpg4win][3])，在cmd中执行：
 <br>
 {% highlight text %}
-$ gpg --key-gen
+$ gpg --gen-key
 {% endhighlight %}
 姓名，邮箱以及备注要认真填写，最后要求输入passphase，这个是密码，上传maven要用到。
 
