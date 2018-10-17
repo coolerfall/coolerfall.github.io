@@ -1,8 +1,0 @@
-{% if site.safe and site.cooler.sharing.provider and page.cooler.sharing != false %}
-
-{% case site.cooler.sharing.provider %}
-{% when "custom" %}
-  {% include custom/sharing %}
-{% endcase %}
-
-{% endif %}

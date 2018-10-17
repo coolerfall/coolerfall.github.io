@@ -115,25 +115,25 @@
 
 
 
-  <meta name="description" content="Sorry this page does not exist :(">
-<meta name="keywords" content="Open Source, Golang, Gophoer, Android, Java, Developer, Frontend, Backend, IoT, MicroService, Docker, k8s">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vincent Cheung&#39;s 博客">
-<meta property="og:url" content="http://coolerfall.com/404.html">
+  <meta name="description" content="在Android开发中不免会使用到JNI，JNI编程中可以使用javah等工具自动生成jni的头文件，但是如果想自己手动注册，那么就需要了解JNI方法的签名规范，记录一下，以备以后查看。">
+<meta name="keywords" content="jni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android JNI类型、方法签名规范">
+<meta property="og:url" content="http://coolerfall.com/2015/07/04/jni-signature/index.html">
 <meta property="og:site_name" content="Vincent Cheung&#39;s 博客">
-<meta property="og:description" content="Sorry this page does not exist :(">
+<meta property="og:description" content="在Android开发中不免会使用到JNI，JNI编程中可以使用javah等工具自动生成jni的头文件，但是如果想自己手动注册，那么就需要了解JNI方法的签名规范，记录一下，以备以后查看。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-16T09:37:22.782Z">
+<meta property="og:updated_time" content="2018-10-17T04:43:28.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vincent Cheung&#39;s 博客">
-<meta name="twitter:description" content="Sorry this page does not exist :(">
+<meta name="twitter:title" content="Android JNI类型、方法签名规范">
+<meta name="twitter:description" content="在Android开发中不免会使用到JNI，JNI编程中可以使用javah等工具自动生成jni的头文件，但是如果想自己手动注册，那么就需要了解JNI方法的签名规范，记录一下，以备以后查看。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://coolerfall.com/404.html"/>
+  <link rel="canonical" href="http://coolerfall.com/2015/07/04/jni-signature/"/>
 
 
 
@@ -143,7 +143,7 @@
   };
 </script>
 
-  <title> | Vincent Cheung's 博客</title>
+  <title>Android JNI类型、方法签名规范 | Vincent Cheung's 博客</title>
   
 
 
@@ -276,65 +276,334 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolerfall.com/2015/07/04/jni-signature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vincent Cheung">
+      <meta itemprop="description" content="不会前端的Java程序猿不是一个好Gopher">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vincent Cheung's 博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline"></h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          Sorry this page does not exist :(
+          <h1 class="post-title" itemprop="name headline">Android JNI类型、方法签名规范
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2015-07-04T00:00:00+08:00">2015-07-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/04/jni-signature/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/07/04/jni-signature/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>在Android开发中不免会使用到JNI，JNI编程中可以使用javah等工具自动生成jni的头文件，但是如果想自己手动注册，那么就需要了解JNI方法的签名规范，记录一下，以备以后查看。<br><a id="more"></a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Java类型</th>
+<th style="text-align:center">Native类型</th>
+<th style="text-align:center">JNI签名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">jboolean</td>
+<td style="text-align:center">Z</td>
+</tr>
+<tr>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">jbyte</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">jchar</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">jshort</td>
+<td style="text-align:center">S</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">jint</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">jlong</td>
+<td style="text-align:center">J</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">jfloat</td>
+<td style="text-align:center">F</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">jdouble</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:center">byte[]</td>
+<td style="text-align:center">jbyteArray</td>
+<td style="text-align:center">[B</td>
+</tr>
+<tr>
+<td style="text-align:center">char[]</td>
+<td style="text-align:center">jcharArray</td>
+<td style="text-align:center">[C</td>
+</tr>
+<tr>
+<td style="text-align:center">short[]</td>
+<td style="text-align:center">jshortArray</td>
+<td style="text-align:center">[S</td>
+</tr>
+<tr>
+<td style="text-align:center">int[]</td>
+<td style="text-align:center">jintArray</td>
+<td style="text-align:center">[I</td>
+</tr>
+<tr>
+<td style="text-align:center">long[]</td>
+<td style="text-align:center">jlongArray</td>
+<td style="text-align:center">[L</td>
+</tr>
+<tr>
+<td style="text-align:center">float[]</td>
+<td style="text-align:center">jfloatArray</td>
+<td style="text-align:center">[F</td>
+</tr>
+<tr>
+<td style="text-align:center">double[]</td>
+<td style="text-align:center">jdoubleArray</td>
+<td style="text-align:center">[D</td>
+</tr>
+<tr>
+<td style="text-align:center">Java类(例: String)</td>
+<td style="text-align:center">jstring/jobject</td>
+<td style="text-align:center">L全类名;(例: Ljava/lang/String;</td>
+</tr>
+<tr>
+<td style="text-align:center">Java方法(例: start(String path, long pos, long duration))</td>
+<td style="text-align:center">Native方法(例: start(jstring path, jlong pos, jlong duration))</td>
+<td style="text-align:center">(参数签名…)返回值签名(例: (Ljava/lang/String;JJ)V)</td>
+</tr>
+</tbody>
+</table>
+<p>要注意的是java类的签名，最后的分号不要忘记。String类比较特别，jni提供了就jstring与之对应，java方法签名中，括号里面是所有参数的类型签名，中间无间隔，括号外面是返回值类型签名。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="Vincent Cheung 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.png" alt="Vincent Cheung 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Vincent Cheung</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://coolerfall.com/2015/07/04/jni-signature/" title="Android JNI类型、方法签名规范">http://coolerfall.com/2015/07/04/jni-signature/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jni/" rel="tag"># jni</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/24/bad-interpreter/" rel="next" title="linux shell报错bad interpreter No such file or directory">
+                <i class="fa fa-chevron-left"></i> linux shell报错bad interpreter No such file or directory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/10/jni_register/" rel="prev" title="Android JNI注册的两种方式">
+                Android JNI注册的两种方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -685,9 +954,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://coolerfall.com/404.html';
-        this.page.identifier = '404.html';
-        this.page.title = '';
+        this.page.url = 'http://coolerfall.com/2015/07/04/jni-signature/';
+        this.page.identifier = '2015/07/04/jni-signature/';
+        this.page.title = 'Android JNI类型、方法签名规范';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
