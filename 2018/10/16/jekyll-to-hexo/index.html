@@ -36,6 +36,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -93,7 +97,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.4.2',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: true,
@@ -123,7 +127,7 @@
 <meta property="og:site_name" content="Vincent Cheung&#39;s 博客">
 <meta property="og:description" content="自上次更新博客以来已超过2年，其一是工作太忙，其二主要是因为自己太懒，不过这其间学习非常多的新知识。最近新增了几个项目之后，发现已经太久没更新博客，同时感觉jekyll用起来还是不够舒服，经过一番google，找到hexo，hexo原理和jekyll差不多，但是代码块高亮直接使用的markdown的语法，无需像jekyll那样的高亮语法，又找了个简洁的主题hexo-theme-next,于是折腾起">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-17T09:14:14.884Z">
+<meta property="og:updated_time" content="2018-10-18T01:50:37.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Jekyll迁移到Hexo">
 <meta name="twitter:description" content="自上次更新博客以来已超过2年，其一是工作太忙，其二主要是因为自己太懒，不过这其间学习非常多的新知识。最近新增了几个项目之后，发现已经太久没更新博客，同时感觉jekyll用起来还是不够舒服，经过一番google，找到hexo，hexo原理和jekyll差不多，但是代码块高亮直接使用的markdown的语法，无需像jekyll那样的高亮语法，又找了个简洁的主题hexo-theme-next,于是折腾起">
@@ -250,11 +254,42 @@
 
       
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
     </ul>
   
 
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -384,6 +419,14 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -396,22 +439,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
-        <p>自上次更新博客以来已超过2年，其一是工作太忙，其二主要是因为自己太懒，不过这其间学习非常多的新知识。最近新增了几个项目之后，发现已经太久没更新博客，同时感觉jekyll用起来还是不够舒服，经过一番google，找到<a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">hexo</a>，hexo原理和jekyll差不多，但是代码块高亮直接使用的markdown的语法，无需像jekyll那样的高亮语法，又找了个简洁的主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>,于是折腾起hexo来，至于为什么不去折腾hugo，主要是因为找了半天主题没找到满意的，遂放弃了。hexo的使用可以参见<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官网</a>的步骤，非常的详细，大致记录一下迁移过程。<br><a id="more"></a></p>
-<h4 id="1-项目初始化"><a href="#1-项目初始化" class="headerlink" title="1.项目初始化"></a>1.项目初始化</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install -g hexo-cli</span><br><span class="line"><span class="meta">$</span> hexo init coolerfall.github.io</span><br><span class="line"><span class="meta">$</span> cd coolerfall.github.io &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
-<h4 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h4><p>完全配置文件可参考官网的文档，一般来说需要改下作者信息，描述等等，默认是使用landscape主题，我这里使用的是<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>，参见文档将代码加入hexo目录下的<code>themes</code>下，修改根目录<code>_config.yml</code>中的<code>theme</code>为<code>next</code>即可，next主题完全配置参见官网文档，需要注意的是next默认没有生成<code>tags</code>和<code>categories</code>的index页面，需要自己手动生成：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo new page tags</span><br><span class="line"><span class="meta">$</span> hexo new page categories</span><br></pre></td></tr></table></figure></p>
+        <p>自上次更新博客以来已超过2年，其一是工作太忙，其二主要是因为自己太懒，不过这其间学习非常多的新知识。最近新增了几个项目之后，发现已经太久没更新博客，同时感觉jekyll用起来还是不够舒服，经过一番google，找到<a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">hexo</a>，hexo原理和jekyll差不多，但是代码块高亮直接使用的markdown的语法，无需像jekyll那样的高亮语法，又找了个简洁的主题<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>,于是折腾起hexo来，至于为什么不去折腾hugo，主要是因为找了半天主题没找到满意的，遂放弃了。hexo的使用可以参见<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官网</a>的步骤，非常的详细，大致记录一下迁移过程。<br><a id="more"></a></p>
+<h4 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install -g hexo-cli</span><br><span class="line"><span class="meta">$</span> hexo init coolerfall.github.io</span><br><span class="line"><span class="meta">$</span> cd coolerfall.github.io &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>完全配置文件可参考官网的文档，一般来说需要改下作者信息，描述等等，默认是使用landscape主题，我这里使用的是<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a>，参见文档将代码加入hexo目录下的<code>themes</code>下，修改根目录<code>_config.yml</code>中的<code>theme</code>为<code>next</code>即可，next主题完全配置参见官网文档，需要注意的是next默认没有生成<code>tags</code>和<code>categories</code>的index页面，需要自己手动生成：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo new page tags</span><br><span class="line"><span class="meta">$</span> hexo new page categories</span><br></pre></td></tr></table></figure></p>
 <p>生成的文件在<code>_posts</code>下的<code>tags</code>和<code>categories</code>中，将<code>type</code>分别改为<code>tags</code>和<code>categories</code>即可，后面自动生成。配置好后，可以简单运行下看看效果：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo serve</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-迁移"><a href="#3-迁移" class="headerlink" title="3.迁移"></a>3.迁移</h4><p>由于之前用的是Jekyll，post文章的格式为<code>:year-:month-:day-:title.md</code>，因此hexo也采用同样的格式即可，只需将<code>new_post_name</code>改为这种格式。将Jekyll目录下的<code>_posts</code>中文章全部copy到hexo目录下的<code>source/_posts</code>中，由于文章是Markdown格式，所以基本没有太大改动，我之前使用了Jekyll的一个高亮插件，写法与Markdown有所区别，只需把这些写法改为Markdown的写法即可，然后运行可看到效果。关于文章长度太长，需显示<code>阅读全文</code>，有两种方式：</p>
+<h4 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h4><p>由于之前用的是Jekyll，post文章的格式为<code>:year-:month-:day-:title.md</code>，因此hexo也采用同样的格式即可，只需将<code>new_post_name</code>改为这种格式。将Jekyll目录下的<code>_posts</code>中文章全部copy到hexo目录下的<code>source/_posts</code>中，由于文章是Markdown格式，所以基本没有太大改动，我之前使用了Jekyll的一个高亮插件，写法与Markdown有所区别，只需把这些写法改为Markdown的写法即可，然后运行可看到效果。关于文章长度太长，需显示<code>阅读全文</code>，有两种方式：</p>
 <ul>
 <li>自动截取<br>需修改<code>next</code>主题配置文件中<code>auto_excerpt</code>为true，以及截取开始长度（但这种方式不推荐）。</li>
 <li>手动添加<br>只需要在每篇post中需要截取的地方加入<code>&lt;!-- more --&gt;</code>即可。</li>
 </ul>
-<h4 id="4-部署"><a href="#4-部署" class="headerlink" title="4.部署"></a>4.部署</h4><p>最后部署至github，hexo有多种部署方式，可部署至<code>Git</code>，<code>Heroku</code>，<code>Netlify</code>等等，都有相应部署工具。这里使用<code>hexo-deployer-git</code>，需在根目录下加入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><p>最后部署至github，hexo有多种部署方式，可部署至<code>Git</code>，<code>Heroku</code>，<code>Netlify</code>等等，都有相应部署工具。这里使用<code>hexo-deployer-git</code>，需在根目录下加入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>在根目录配置文件中的<code>deploy</code>中加入相关配置，然后执行部署<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo g -d</span><br></pre></td></tr></table></figure></p>
 <p>注意，Hexo与Jekyll有区别，github默认在服务器上生成并部署，而Hexo需要我们在本地生成好静态文件后再上传，因此，需要分两个分支来存放代码，master分支放静态文件，另起一个分支（如：source）来存放源码，这里就需要在deploy中加入这两个分支的操作：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  - type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">git@github.com:you/your.github.io.git</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">[master]</span></span><br><span class="line"><span class="attr">  - type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">git@github.com:you/anothergit.git</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">[master]</span></span><br><span class="line"><span class="attr">    extend_dirs:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">    ignore_hidden:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    ignore_pattern:</span></span><br><span class="line"><span class="attr">        public:</span> <span class="string">.</span></span><br></pre></td></tr></table></figure></p>
 <p>至此，博客从Jekll成功迁移到了Hexo。</p>
@@ -503,6 +546,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/10/17/work-on-linux-part-one/" rel="prev" title="在Linux下进行开发工作（一）">
+                在Linux下进行开发工作（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -585,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -663,7 +710,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -677,12 +726,12 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/Coolerfall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Coolerfall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
                   
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:coolingfall@gmail.com" target="_blank" title="Email"><i class="fa fa-fw fa-envelope"></i>Email</a>
+                  <a href="mailto:coolingfall@gmail.com" target="_blank" title="Email"><i class="fa fa-fw fa-envelope"></i></a>
                   
                 </span>
               
@@ -713,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目初始化"><span class="nav-number">1.</span> <span class="nav-text">1.项目初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置"><span class="nav-number">2.</span> <span class="nav-text">2.配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-迁移"><span class="nav-number">3.</span> <span class="nav-text">3.迁移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-部署"><span class="nav-number">4.</span> <span class="nav-text">4.部署</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目初始化"><span class="nav-number">1.</span> <span class="nav-text">项目初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迁移"><span class="nav-number">3.</span> <span class="nav-text">迁移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署"><span class="nav-number">4.</span> <span class="nav-text">部署</span></a></li></ol></div>
             
 
           </div>
@@ -761,6 +810,24 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -921,6 +988,326 @@
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -937,6 +1324,11 @@
   
 
   
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
 
   
   <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.2"></script>
