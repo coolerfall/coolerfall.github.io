@@ -447,7 +447,7 @@
                 目前共计 21 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/android-studio/" style="font-size: 30px; color: #111">android studio</a> <a href="/tags/animation/" style="font-size: 12px; color: #ccc">animation</a> <a href="/tags/c/" style="font-size: 12px; color: #ccc">c</a> <a href="/tags/git/" style="font-size: 12px; color: #ccc">git</a> <a href="/tags/github-pages/" style="font-size: 12px; color: #ccc">github pages</a> <a href="/tags/hash/" style="font-size: 18px; color: #8e8e8e">hash</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/home-key/" style="font-size: 12px; color: #ccc">home key</a> <a href="/tags/jekyll/" style="font-size: 18px; color: #8e8e8e">jekyll</a> <a href="/tags/jni/" style="font-size: 18px; color: #8e8e8e">jni</a> <a href="/tags/launch-mode/" style="font-size: 12px; color: #ccc">launch mode</a> <a href="/tags/linux/" style="font-size: 12px; color: #ccc">linux</a> <a href="/tags/maven/" style="font-size: 12px; color: #ccc">maven</a> <a href="/tags/media/" style="font-size: 12px; color: #ccc">media</a> <a href="/tags/ndk/" style="font-size: 24px; color: #4f4f4f">ndk</a> <a href="/tags/proguard/" style="font-size: 12px; color: #ccc">proguard</a> <a href="/tags/sanitizer/" style="font-size: 12px; color: #ccc">sanitizer</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/taskAffinity/" style="font-size: 12px; color: #ccc">taskAffinity</a> <a href="/tags/url/" style="font-size: 12px; color: #ccc">url</a> <a href="/tags/widget/" style="font-size: 12px; color: #ccc">widget</a>
+              <a href="/tags/android-studio/" style="font-size: 30px; color: #111">android studio</a> <a href="/tags/animation/" style="font-size: 12px; color: #ccc">animation</a> <a href="/tags/c/" style="font-size: 12px; color: #ccc">c</a> <a href="/tags/git/" style="font-size: 12px; color: #ccc">git</a> <a href="/tags/github-pages/" style="font-size: 12px; color: #ccc">github pages</a> <a href="/tags/hash/" style="font-size: 18px; color: #8e8e8e">hash</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/home-key/" style="font-size: 12px; color: #ccc">home key</a> <a href="/tags/jekyll/" style="font-size: 18px; color: #8e8e8e">jekyll</a> <a href="/tags/jni/" style="font-size: 18px; color: #8e8e8e">jni</a> <a href="/tags/launch-mode/" style="font-size: 12px; color: #ccc">launch mode</a> <a href="/tags/linux/" style="font-size: 18px; color: #8e8e8e">linux</a> <a href="/tags/maven/" style="font-size: 12px; color: #ccc">maven</a> <a href="/tags/media/" style="font-size: 12px; color: #ccc">media</a> <a href="/tags/ndk/" style="font-size: 24px; color: #4f4f4f">ndk</a> <a href="/tags/proguard/" style="font-size: 12px; color: #ccc">proguard</a> <a href="/tags/sanitizer/" style="font-size: 12px; color: #ccc">sanitizer</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/taskAffinity/" style="font-size: 12px; color: #ccc">taskAffinity</a> <a href="/tags/url/" style="font-size: 12px; color: #ccc">url</a> <a href="/tags/widget/" style="font-size: 12px; color: #ccc">widget</a>
             </div>
           </div>
         
@@ -522,7 +522,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1214,6 +1214,75 @@
   
 
   
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
 
 </body>
 </html>

@@ -119,18 +119,18 @@
 
 
 
-  <meta name="description" content="在API21之前，如果想实现线控，则只需要使用AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver)即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
+  <meta name="description" content="在API21之前，如果想实现线控，则只需要使用:1AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver) 即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
 <meta name="keywords" content="media">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用MediaSessionCompat来实现Media Button的监听">
 <meta property="og:url" content="http://coolerfall.com/2016/01/06/media-session-compat/index.html">
 <meta property="og:site_name" content="Vincent Cheung&#39;s 博客">
-<meta property="og:description" content="在API21之前，如果想实现线控，则只需要使用AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver)即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
+<meta property="og:description" content="在API21之前，如果想实现线控，则只需要使用:1AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver) 即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-16T04:17:42.617Z">
+<meta property="og:updated_time" content="2018-10-18T09:56:57.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用MediaSessionCompat来实现Media Button的监听">
-<meta name="twitter:description" content="在API21之前，如果想实现线控，则只需要使用AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver)即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
+<meta name="twitter:description" content="在API21之前，如果想实现线控，则只需要使用:1AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver) 即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。">
 
 
 
@@ -445,7 +445,8 @@
       
 
       
-        <p>在API21之前，如果想实现线控，则只需要使用AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver)即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。<br><a id="more"></a><br>API21之前的实现可以参考<a href="http://blog.csdn.net/qinjuning/article/details/6938436" target="_blank" rel="noopener">这篇文章</a>，但是MediaSession是在新的api中加入的，我们可以使用android.support.v4.media.session.MediaSessionCompat：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates a new session.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context The context.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> tag A short name for debugging purposes.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mediaButtonEventReceiver The component name for your receiver.</span></span><br><span class="line"><span class="comment"> *            If null, this will attempt to find an appropriate</span></span><br><span class="line"><span class="comment"> *            &#123;<span class="doctag">@link</span> BroadcastReceiver&#125; that handles</span></span><br><span class="line"><span class="comment"> *            &#123;<span class="doctag">@link</span> Intent#ACTION_MEDIA_BUTTON&#125; from your manifest.</span></span><br><span class="line"><span class="comment"> *            A receiver is required to support platform versions earlier</span></span><br><span class="line"><span class="comment"> *            than &#123;<span class="doctag">@link</span> android.os.Build.VERSION_CODES#LOLLIPOP&#125;.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mbrIntent The PendingIntent for your receiver component that</span></span><br><span class="line"><span class="comment"> *            handles media button events. This is optional and will be used</span></span><br><span class="line"><span class="comment"> *            on &#123;<span class="doctag">@link</span> android.os.Build.VERSION_CODES#JELLY_BEAN_MR2&#125; and</span></span><br><span class="line"><span class="comment"> *            later instead of the component name.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MediaSessionCompat</span><span class="params">(Context context, String tag, ComponentName mediaButtonEventReceiver,</span></span></span><br><span class="line"><span class="function"><span class="params">            PendingIntent mbrIntent)</span> </span>&#123;</span><br></pre></td></tr></table></figure></p>
+        <p>在API21之前，如果想实现线控，则只需要使用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AudioManager.reregisterMediaButtonEventReceiver(ComponentName eventReceiver)</span><br></pre></td></tr></table></figure></p>
+<p>即可，但是最近更新SDK之后发现这个API已经废弃掉了，推荐使用MediaSession来代替。<br><a id="more"></a><br>API21之前的实现可以参考<a href="http://blog.csdn.net/qinjuning/article/details/6938436" target="_blank" rel="noopener">这篇文章</a>，但是MediaSession是在新的api中加入的，我们可以使用android.support.v4.media.session.MediaSessionCompat：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates a new session.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context The context.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> tag A short name for debugging purposes.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mediaButtonEventReceiver The component name for your receiver.</span></span><br><span class="line"><span class="comment"> *            If null, this will attempt to find an appropriate</span></span><br><span class="line"><span class="comment"> *            &#123;<span class="doctag">@link</span> BroadcastReceiver&#125; that handles</span></span><br><span class="line"><span class="comment"> *            &#123;<span class="doctag">@link</span> Intent#ACTION_MEDIA_BUTTON&#125; from your manifest.</span></span><br><span class="line"><span class="comment"> *            A receiver is required to support platform versions earlier</span></span><br><span class="line"><span class="comment"> *            than &#123;<span class="doctag">@link</span> android.os.Build.VERSION_CODES#LOLLIPOP&#125;.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mbrIntent The PendingIntent for your receiver component that</span></span><br><span class="line"><span class="comment"> *            handles media button events. This is optional and will be used</span></span><br><span class="line"><span class="comment"> *            on &#123;<span class="doctag">@link</span> android.os.Build.VERSION_CODES#JELLY_BEAN_MR2&#125; and</span></span><br><span class="line"><span class="comment"> *            later instead of the component name.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MediaSessionCompat</span><span class="params">(Context context, String tag, ComponentName mediaButtonEventReceiver,</span></span></span><br><span class="line"><span class="function"><span class="params">            PendingIntent mbrIntent)</span> </span>&#123;</span><br></pre></td></tr></table></figure></p>
 <p>MediaSessionCompat的构造函数一共有四个参数，我们这里简单实现Media Button的监听，只需要context和mediaButtonEventReceiver即可，tag用于调试，mbrIntent设置为null即可。首先和API21之前一样实现了一个MediaButtonReceiver：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediaButtonReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);</span><br><span class="line">		<span class="keyword">if</span> (event == <span class="keyword">null</span> || event.getAction() != KeyEvent.ACTION_UP) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// do something</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>接下来我们要做的就是new一个MediaSessionCompat：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> MediaSessionCompat mMediaSession;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onCreate();</span><br><span class="line"></span><br><span class="line">		ComponentName mbr = <span class="keyword">new</span> ComponentName(getPackageName(), MediaButtonReceiver.class.getName());</span><br><span class="line">		mMediaSession = <span class="keyword">new</span> MediaSessionCompat(<span class="keyword">this</span>, <span class="string">"mbr"</span>, mbr, <span class="keyword">null</span>);</span><br><span class="line">		<span class="comment">/* set flags to handle media buttons */</span></span><br><span class="line">		mMediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | </span><br><span class="line">			MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* this is need after Lolipop */</span></span><br><span class="line">		mMediaSession.setCallback(<span class="keyword">new</span> MediaSessionCompat.Callback() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMediaButtonEvent</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">if</span> (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">super</span>.onMediaButtonEvent(intent);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);</span><br><span class="line">				<span class="keyword">if</span> (event == <span class="keyword">null</span> || event.getAction() != KeyEvent.ACTION_UP) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">super</span>.onMediaButtonEvent(intent);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="comment">// do something</span></span><br><span class="line"></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* to make sure the media session is active */</span></span><br><span class="line">		<span class="keyword">if</span> (!mMediaSession.isActive()) &#123;</span><br><span class="line">			mMediaSession.setActive(<span class="keyword">true</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		mMediaSession.release();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其他的和API21之前一样，需要在manifest中注册这个MediaButtonReceiver<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver android:name=<span class="string">"com.coolerfall.managers.receivers.MediaButtonReceiver"</span>&gt;</span><br><span class="line">    &lt;intent-filter&gt;</span><br><span class="line">        &lt;action android:name=<span class="string">"android.intent.action.MEDIA_BUTTON"</span>/&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure></p>
@@ -614,7 +615,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1306,6 +1307,75 @@
   
 
   
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
 
 </body>
 </html>
