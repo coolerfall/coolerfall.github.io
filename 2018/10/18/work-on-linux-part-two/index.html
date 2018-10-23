@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="Vincent Cheung&#39;s 博客">
 <meta property="og:description" content="在Linux下进行开发工作（一）中记录了Manjaro的安装过程以及源设置等等，这一篇主要记录下常用软件的安装等等。Manjaro固然非常的方便，各种开发工具一条命令就可以安装好，但有些Windows常用软件Linux上也没有，有的可以使用Linux上的替代品，不过还是有少许软件不可避免的要使用（如微信，QQ等），这会给我们的工作带来了不少的麻烦，刚从Windows转Linux会有诸多的不习惯，不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-19T07:54:46.061Z">
+<meta property="og:updated_time" content="2018-10-22T05:54:03.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux下进行开发工作（二）">
 <meta name="twitter:description" content="在Linux下进行开发工作（一）中记录了Manjaro的安装过程以及源设置等等，这一篇主要记录下常用软件的安装等等。Manjaro固然非常的方便，各种开发工具一条命令就可以安装好，但有些Windows常用软件Linux上也没有，有的可以使用Linux上的替代品，不过还是有少许软件不可避免的要使用（如微信，QQ等），这会给我们的工作带来了不少的麻烦，刚从Windows转Linux会有诸多的不习惯，不">
@@ -348,10 +348,10 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在Linux下进行开发工作（二）
+          <h2 class="post-title" itemprop="name headline">在Linux下进行开发工作（二）
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
@@ -445,7 +445,7 @@
       
 
       
-        <p>在<a href="2018/10/17/work-on-linux-part-one/">Linux下进行开发工作（一）</a>中记录了Manjaro的安装过程以及源设置等等，这一篇主要记录下常用软件的安装等等。Manjaro固然非常的方便，各种开发工具一条命令就可以安装好，但有些Windows常用软件Linux上也没有，有的可以使用Linux上的替代品，不过还是有少许软件不可避免的要使用（如微信，QQ等），这会给我们的工作带来了不少的麻烦，刚从Windows转Linux会有诸多的不习惯，不过都还好，我们总是有各种各样的办法来折腾Linux来适合我们用来做日常的开发桌面。还是那句话，如果没准备好用Linux作为日常开发桌面，千万不要尝试 : )。<br><a id="more"></a></p>
+        <a href="/2018/10/17/work-on-linux-part-one/" title="在Linux下进行开发工作（一）">在Linux下进行开发工作（一）</a>中记录了Manjaro的安装过程以及源设置等等，这一篇主要记录下常用软件的安装等等。Manjaro固然非常的方便，各种开发工具一条命令就可以安装好，但有些Windows常用软件Linux上也没有，有的可以使用Linux上的替代品，不过还是有少许软件不可避免的要使用（如微信，QQ等），这会给我们的工作带来了不少的麻烦，刚从Windows转Linux会有诸多的不习惯，不过都还好，我们总是有各种各样的办法来折腾Linux来适合我们用来做日常的开发桌面。还是那句话，如果没准备好用Linux作为日常开发桌面，千万不要尝试 : )。<br><a id="more"></a>
 <h4 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h4><p>毕竟日常还是使用中文，中文输入法是必须得安装的，Linux下的输入框架常用的有<code>fcitx</code>和<code>ibus</code>，我选用的是<a href="https://wiki.archlinux.org/index.php/Fcitx" target="_blank" rel="noopener">fcitx</a>：</p>
 <ul>
 <li><p>安装fcitx</p>
@@ -481,7 +481,11 @@
 </li>
 <li><p>配置<br>  安装完后可以直接打开使用，不过由于屏幕适配以及字体问题，可能会导致乱码，字体小的问题，因此我们还需要修改些配置才能正常使用。</p>
 <ul>
-<li>修改<code>$HOME/.wine/system.reg</code><br>找到<code>LogPixels</code>，将值修改为80（根据自己的屏幕调整）</li>
+<li><p>字体安<br>需要将<code>微软雅黑</code>和<code>新宋</code>字体复制到<code>$HOME/.local/share/fonts</code>下，并刷新字体缓存：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> fc-cache -fv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>$HOME/.wine/system.reg</code><br>找到<code>LogPixels</code>，将值修改为80（根据自己的屏幕调整）</p>
+</li>
 <li><p>修改<code>$HOME/.wine/driver_c/windows/win.ini</code><br>在文件尾新增：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Desktop]</span><br><span class="line">menufontsize=13</span><br><span class="line">messagefontsize=13</span><br><span class="line">statusfontsize=13</span><br><span class="line">IconTitleSize=13</span><br></pre></td></tr></table></figure>
 </li>
@@ -591,6 +595,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/10/22/work-on-linux-part-three/" rel="prev" title="在Linux下进行开发工作（三）">
+                在Linux下进行开发工作（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -673,7 +681,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -767,12 +775,12 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/Coolerfall" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  <a href="https://github.com/Coolerfall" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i></a>
                   
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:coolingfall@gmail.com" target="_blank" title="Email"><i class="fa fa-fw fa-envelope"></i></a>
+                  <a href="mailto:coolingfall@gmail.com" target="_blank" title="Email" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
                   
                 </span>
               
@@ -835,9 +843,11 @@
 </div>
 
 
+  
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -845,7 +855,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a></div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a></div>
 
 
 
