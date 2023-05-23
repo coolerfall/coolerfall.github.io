@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"coolerfall.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.16.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":300},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/config.js"></script>
+
+    <meta name="description" content="用 AS 开发也有一段时间了，发现 AS 可以使用 maven，在 gradle 中可以很方便的解决依赖问题，再也不用去下载相应的 jar 包了。gradle 添加一些依赖库比较方便，但是如果想把自己的一些开源项目上传到 maven 中央库给别人使用，就稍微有些麻烦了。现在比较简单的办法是先将自己在 github 上的项目提交到 Sonatype，然后再同步到 maven 中央库去，大致说一下流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 gradle 将项目上传到 maven 中央库">
+<meta property="og:url" content="https://coolerfall.com/2015/03/27/gradle-push-to-maven/index.html">
+<meta property="og:site_name" content="Vincent&#39;s博客">
+<meta property="og:description" content="用 AS 开发也有一段时间了，发现 AS 可以使用 maven，在 gradle 中可以很方便的解决依赖问题，再也不用去下载相应的 jar 包了。gradle 添加一些依赖库比较方便，但是如果想把自己的一些开源项目上传到 maven 中央库给别人使用，就稍微有些麻烦了。现在比较简单的办法是先将自己在 github 上的项目提交到 Sonatype，然后再同步到 maven 中央库去，大致说一下流程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/new-issue.jpg">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/create_issue1.jpg">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/create_issue2.jpg">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/comments1.jpg">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/release.jpg">
+<meta property="og:image" content="https://coolerfall.com/images/gradle-maven/comments2.jpg">
+<meta property="article:published_time" content="2015-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-23T06:12:14.672Z">
+<meta property="article:author" content="Vincent Cheung">
+<meta property="article:tag" content="android studio">
+<meta property="article:tag" content="maven">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coolerfall.com/images/gradle-maven/new-issue.jpg">
+
+
+<link rel="canonical" href="https://coolerfall.com/2015/03/27/gradle-push-to-maven/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://coolerfall.com/2015/03/27/gradle-push-to-maven/","path":"2015/03/27/gradle-push-to-maven/","title":"使用 gradle 将项目上传到 maven 中央库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用 gradle 将项目上传到 maven 中央库 | Vincent's博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W55SBZT7K"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6W55SBZT7K","only_pageview":false}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?410dd0fa5a88fa92dbf67d7a883a7208"></script>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Vincent's博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CJIRA%E8%B4%A6%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">注册 JIRA 账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAissue"><span class="nav-number">2.</span> <span class="nav-text">创建一个 issue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90GPG%E5%AF%86%E9%92%A5%EF%BC%8C%E7%94%A8%E4%BA%8E%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E5%92%8C%E7%AD%BE%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text">生成 GPG 密钥，用于上传的文件加密和签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8gradle%E6%8F%90%E4%BA%A4%E9%A1%B9%E7%9B%AE%E5%88%B0Sonatype"><span class="nav-number">4.</span> <span class="nav-text">使用 gradle 提交项目到 Sonatype</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vincent Cheung"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Vincent Cheung</p>
+  <div class="site-description" itemprop="description">不会前端的Java程序猿不是一个好Gopher</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/coolerfall" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;coolerfall" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:coolingfall@gmail.com" title="E-Mail → mailto:coolingfall@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://coolerfall.com/2015/03/27/gradle-push-to-maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Vincent Cheung">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vincent's博客">
+      <meta itemprop="description" content="不会前端的Java程序猿不是一个好Gopher">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 gradle 将项目上传到 maven 中央库 | Vincent's博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 gradle 将项目上传到 maven 中央库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-28 00:00:00" itemprop="dateCreated datePublished" datetime="2015-03-28T00:00:00+08:00">2015-03-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-23 14:12:14" itemprop="dateModified" datetime="2023-05-23T14:12:14+08:00">2023-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2015/03/27/gradle-push-to-maven/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/03/27/gradle-push-to-maven/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>用 AS 开发也有一段时间了，发现 AS 可以使用 maven，在 gradle 中可以很方便的解决依赖问题，再也不用去下载相应的 jar 包了。gradle 添加一些依赖库比较方便，但是如果想把自己的一些开源项目上传到 maven 中央库给别人使用，就稍微有些麻烦了。现在比较简单的办法是先将自己在 github 上的项目提交到 Sonatype，然后再同步到 maven 中央库去，大致说一下流程。</p>
+<span id="more"></span>
+
+<h4 id="注册JIRA账号"><a href="#注册JIRA账号" class="headerlink" title="注册JIRA账号"></a>注册 JIRA 账号</h4><p>要想把项目提交到 Sonatype，首先得得去 <a target="_blank" rel="noopener" href="https://issues.sonatype.org/">Sonatype Issue</a> 去注册一个 JIRA 账号，注册流程很简单，挨着填写就 ok 了，这个账号在后面配置的时候要用到。</p>
+<h4 id="创建一个issue"><a href="#创建一个issue" class="headerlink" title="创建一个issue"></a>创建一个 issue</h4><p>账号注册好之后，就开始创建一个 issue，这个 issue 对应你的一个项目，在上面导航栏中有个 Create 按钮：<br><img src="/images/gradle-maven/new-issue.jpg" alt="img"><br>然后再弹出的对话框中填写项目的信息：<br><img src="/images/gradle-maven/create_issue1.jpg" alt="img"><br><img src="/images/gradle-maven/create_issue2.jpg" alt="img"><br>其中 Group Id 很重要，一般为自己的域名，这个在后面提交项目的时候要用到。创建好 issue 后，接下来就是等待，然后工作人员会给你发送邮件。这个时候可以在导航栏中的 Issue 中找到自己创建的 issue，到下面的 comments 可以看到工作人员问你之前填写的 group id 这个域名是否是你的，回答是，然后工作人员就会让你提交你的项目到 Sonatype:<br><img src="/images/gradle-maven/comments1.jpg" alt="img"></p>
+<h4 id="生成GPG密钥，用于上传的文件加密和签名"><a href="#生成GPG密钥，用于上传的文件加密和签名" class="headerlink" title="生成GPG密钥，用于上传的文件加密和签名"></a>生成 GPG 密钥，用于上传的文件加密和签名</h4><p>linux 下可以直接使用 gpg。windows 上则可以使用 git 自带的 gpg (如果没有安装 git，可以直接安装 <a target="_blank" rel="noopener" href="http://gpg4win.org/">gpg4win</a>)，在 cmd 中执行：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpg --gen-key</span></span><br></pre></td></tr></tbody></table></figure>
+<p>姓名，邮箱以及备注要认真填写，最后要求输入 passphase，这个是密码，上传 maven 要用到。</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpg --list-keys --keyid-format SHORT</span></span><br><span class="line">/home/xxxx/.gnupg/pubring.kbx</span><br><span class="line">-------------------------------</span><br><span class="line">pub   rsa4096/BB090204 2019-01-03 [SC]</span><br><span class="line">      7B0A1A36C235E95636B75C53D781EED2BB090204</span><br><span class="line">uid           [ultimate] Vincent Cheung (coolerfall.com) &lt;coolingfall@gmail.com&gt;</span><br><span class="line">sub   rsa4096/9123FD1A 2019-01-03 [E]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中 BB090204 是 key id，接下来将公钥上传至服务器：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpg --keyserver hkp://pool.sks-keyservers.net --send-keys BB090204</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>gpg 2.1 之后需要手动导出 secring：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyring secring.gpg --export-secret-keys &gt; ~/.gnupg/secring.gpg</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="使用gradle提交项目到Sonatype"><a href="#使用gradle提交项目到Sonatype" class="headerlink" title="使用gradle提交项目到Sonatype"></a>使用 gradle 提交项目到 Sonatype</h4><p>在网上找到了 Chris Banes 写的 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle">gradle-mvn-push.gradle</a> 脚本，参照这个基本就可以了，然后将这个脚本在你项目的 <code>build.gradle</code> 的最后加入 <code>apply from: '../maven_push.gradle'</code>，如果想发布 jar，需要在脚本中加入：</p>
+<figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">artifacts {</span><br><span class="line">	archives packageReleaseJar</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后需要在项目下的 <code>gradle.properties</code> 中加入相应参数的值：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">VERSION_NAME=1.3.0</span><br><span class="line">POM_GROUP_ID=com.coolerfall</span><br><span class="line">POM_NAME=Http Download Manager</span><br><span class="line">POM_ARTIFACT_ID=android-http-download-manager</span><br><span class="line">POM_DESCRIPTION=An useful and effective http/https download manager for Android, support breakpoint downloading</span><br><span class="line">POM_URL=https://github.com/Coolerfall/Android-HttpDownloadManager</span><br><span class="line">POM_SCM_URL=https://github.com/Coolerfall/Android-HttpDownloadManager</span><br><span class="line">POM_SCM_CONNECTION=scm:git@github.com:Coolerfall/Android-HttpDownloadManager.git</span><br><span class="line">POM_SCM_DEV_CONNECTION=scm:git@github.com:Coolerfall/Android-HttpDownloadManager.git</span><br><span class="line">POM_LICENCE_NAME=The Apache Software License, Version 2.0</span><br><span class="line">POM_LICENCE_URL=http://www.apache.org/licenses/LICENSE-2.0.txt</span><br><span class="line">POM_LICENCE_DIST=repo</span><br><span class="line">POM_PACKAGING=jar</span><br><span class="line"></span><br><span class="line">POM_DEVELOPER_ID=coolerfall</span><br><span class="line">POM_DEVELOPER_NAME=Vincent Cheung</span><br><span class="line">POM_INCEPTION_YEAR=2014</span><br></pre></td></tr></tbody></table></figure>
+
+<p>VERSION_NAME 如果后面带有 SNAPSHOT 字符串将会提交到 <a target="_blank" rel="noopener" href="https://oss.sonatype.org/content/repositories/snapshots">snapshots</a>，这个不需要同步就可以下载 jar 以及源码等，如果不加则是发布 release 版本，这个就需要同步到 maven center 了。然后还需要在 <code>C:/Users/xxx/.gradle/gradle.properties</code> 中添加 Sonatype 账号、密码以及签名信息</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NEXUS_USERNAME=username</span><br><span class="line">NEXUS_PASSWORD=password</span><br><span class="line"></span><br><span class="line">signing.keyId=BB090204</span><br><span class="line">signing.password=password</span><br><span class="line">signing.secretKeyRingFile=C:/Users/xxx/AppData/Roaming/gnupg/secring.gpg</span><br></pre></td></tr></tbody></table></figure>
+<p>其中 signing.password 就是刚刚生成 gpg 时候的 passphase。接下来就可以使用 gralde 提交项目：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">%GRADLE_HOME%/bin/gradle uploadArchives</span></span><br></pre></td></tr></tbody></table></figure>
+<p>我使用的是 AS 最新版本，gradle home 在 AS 目录下（如果不是请自行找到 gradle home）<br>登陆到 <a target="_blank" rel="noopener" href="https://oss.sonatype.org/">Sonatype Nexus</a>，查看 Staging Repositories，然后在搜索中过滤出你的 Group Id，就可以看到你刚刚提交的项目，接下来发布 release 版本了，先 close 再 Release:<br><img src="/images/gradle-maven/release.jpg" alt="img"><br>然后在 <a target="_blank" rel="noopener" href="https://issues.sonatype.org/">Sonatype Issue</a> 给工作人员回复，你已经成功发布，让他们帮你同步到 maven 中央库去：<br><img src="/images/gradle-maven/comments2.jpg" alt="img"><br>最后就是等待工作人员给你同步，成功同步后，一般 10 几分钟左右就可以在 <a target="_blank" rel="noopener" href="http://search.maven.org/">maven center</a> 搜索到你的项目了，这样就可以在 AS 中使用 gradle 来添加依赖了。如果对 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle">gradle-mvn-push.gradle</a> 配置还有什么疑问，请参考我的项目：<a target="_blank" rel="noopener" href="https://github.com/Coolerfall/Android-HttpDownloadManager">Android-HttpDownloadManger</a>。<br>ps: 如果创建 issue 的时候，工作人员回复 <code>Only one JIRA issue per top-level groupId is necessary. You should already have all the necessary permissions to deploy and new artifacts to this groupId or to any sub-groups thanks to OSSRH-14919.</code>, 说明之前已经成功的 release 了一个项目，就不需要再创建一个新的 issue 了，直接将项目提交到 <a target="_blank" rel="noopener" href="https://oss.sonatype.org/content/repositories/snapshots">snapshots</a>，并进行 closed 和 realease 操作即可，过 10 分钟左右就可以在 gradle 中使用了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Vincent Cheung
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://coolerfall.com/2015/03/27/gradle-push-to-maven/" title="使用 gradle 将项目上传到 maven 中央库">https://coolerfall.com/2015/03/27/gradle-push-to-maven/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/android-studio/" rel="tag"># android studio</a>
+              <a href="/tags/maven/" rel="tag"># maven</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/03/24/android-app-uninstall-watcher/" rel="prev" title="Android App Uninstall Watcher">
+                  <i class="fa fa-chevron-left"></i> Android App Uninstall Watcher
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/04/02/android-task-affinity/" rel="next" title="Android taskAffinity 与桌面快捷方式">
+                  Android taskAffinity 与桌面快捷方式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vincent Cheung</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/comments.js"></script><script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/utils.js"></script><script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/motion.js"></script><script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.3/mermaid.min.js","integrity":"sha256-e0o3JYsdjqKajf9eOe22FhioYSz9WofRY4dLKo3F6do="}}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"coolerfall","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://unpkg.com/hexo-theme-next@8.16.0/source/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
