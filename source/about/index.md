@@ -8,22 +8,16 @@ date: 2018-10-16 15:14:28
 
 ### 开源项目
 * [Android-HttpDownloadManager][1]: Android多进程下载器
-* [Android-LunarView][2]: Android农历控件
+* [lork][2]: Go结构化日志库
 * [revival][3]: Typescript RESTful http库
-* [sqlbrick][4]: Golang sql代码生成器
-* [aria2go][5]: [libaria2][6]的Go bindings
-* [Android-AppDaemon][7]: Android进程守护（已停更）
-* [Android-AppUninstallWatcher][8]: Android卸载监听（已停更）
+* [aria2go][4]: [libaria2][5]的Go bindings
 
 ### 技能
 * 专职各端打酱油
 
 
-[1]: https://github.com/Coolerfall/Android-HttpDownloadManager
-[2]: https://github.com/Coolerfall/Android-LunarView
+[1]: https://github.com/coolerfall/Android-HttpDownloadManager
+[2]: https://github.com/coolerfall/lork
 [3]: https://github.com/Coolerfall/revival
-[4]: https://github.com/Tourbillon/sqlbrick
-[5]: https://github.com/Tourbillon/aria2go
-[6]: https://github.com/aria2/aria2
-[7]: https://github.com/Coolerfall/Android-AppDaemon
-[8]: https://github.com/Coolerfall/Android-AppUninstallWatcher
+[4]: https://github.com/Tourbillon/aria2go
+[5]: https://github.com/aria2/aria2
