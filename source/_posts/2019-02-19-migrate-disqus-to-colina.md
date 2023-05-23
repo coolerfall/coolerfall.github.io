@@ -1,5 +1,5 @@
 ---
-title: 迁移评论系统disqus到colina
+title: 迁移评论系统disqus到colina[待更新]
 date: 2019-02-19 16:45:50
 category: misc
 tags: [colina, comment]
