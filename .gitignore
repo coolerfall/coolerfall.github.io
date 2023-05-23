@@ -1,10 +1,12 @@
-_site/*
-_theme_packages/*
-
 Thumbs.db
 .DS_Store
 
 !.gitkeep
 
-.rbenv-version
-.rvmrc
+yarn.lock
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
