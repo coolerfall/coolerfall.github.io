@@ -18,9 +18,9 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #fefefe;
+  --highlight-background: #f7f8f7;
   --highlight-foreground: #545454;
-  --highlight-gutter-background: #ededed;
+  --highlight-gutter-background: #eff2f3;
   --highlight-gutter-foreground: #656565;
   color-scheme: light;
 }
