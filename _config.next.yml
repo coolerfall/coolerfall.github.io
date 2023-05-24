@@ -27,9 +27,9 @@ custom_file_path:
   #postBodyEnd: source/_data/post-body-end.njk
   #footer: source/_data/footer.njk
   #bodyEnd: source/_data/body-end.njk
-  #variable: source/_data/variables.styl
+  variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
-  #style: source/_data/styles.styl
+  # style: source/_data/styles.styl
 
 
 # ---------------------------------------------------------------
@@ -451,15 +451,12 @@ font:
   # Font settings for posts (.post-body).
   posts:
     external: false
-    family: Lato
-    size: 0.9
+    family: 
 
   # Font settings for <code> and code blocks.
   codes:
     external: false
-    family: Inconsolata
-    size: 0.85
-
+    family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -586,7 +583,7 @@ mediumzoom: false
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://apoorv.pro/lozad.js/demo/
-lazyload: false
+lazyload: true
 
 # Automatically insert whitespace between CJK and half-width characters.
 # For more information: https://github.com/vinta/pangu.js
